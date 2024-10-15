@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-page">
+    <nav class="sidebar">
+        <img src="img/logo.svg" alt="Aphixis Logo" class="logo">
+        <ul>
+            <li class="active"><a href="dashboard.html"><img src="img/icons/home.svg" alt="Home">Dashboard</a></li>
+            <li><a href="notas.html"><img src="img/icons/notes.svg" alt="Notas">Notas</a></li>
+            <li><a href="estudiantes.html"><img src="img/icons/students.svg" alt="Estudiantes">Estudiantes</a></li>
+            <li><a href="asistencias.html"><img src="img/icons/attendance.svg" alt="Asistencias">Asistencias</a></li>
+        </ul>
+        <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+    </nav>
+    <main class="main-content">
+        <h1>Dashboard</h1>
+        <div class="cards-container">
+            <div class="card">
+                <h2>Total Estudiantes</h2>
+                <p id="total-students">0</p>
+            </div>
+            <div class="card">
+                <h2>Ausencias Hoy</h2>
+                <p id="absences-today">0</p>
+            </div>
+            <div class="card">
+                <h2>Hora Pico</h2>
+                <p id="peak-hour">--:--</p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <h2>Asistencia Mensual</h2>
+            <canvas id="attendance-chart"></canvas>
+        </div>
+        <div class="top-absences">
+            <h2>Estudiantes con Más Ausencias</h2>
+            <select id="absence-filter">
+                <option value="week">Esta Semana</option>
+                <option value="month">Este Mes</option>
+            </select>
+            <ul id="top-absences-list"></ul>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

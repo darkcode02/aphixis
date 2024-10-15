@@ -1,0 +1,322 @@
+/* Estilos generales */
+:root {
+    --primary-color: #007AFF;
+    --secondary-color: #5AC8FA;
+    --background-color: #F2F2F7;
+    --text-color: #1C1C1E;
+    --sidebar-color: #FFFFFF;
+    --card-color: #FFFFFF;
+    --border-radius: 10px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  /* Estilos para la página de login */
+  .login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    background-color: var(--card-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .login-container .logo {
+    width: 100px;
+    margin-bottom: 1rem;
+  }
+  
+  .login-container h1 {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E5E5EA;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para la barra lateral */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: var(--sidebar-color);
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+  }
+  
+  .sidebar .logo {
+    width: 80px;
+    margin-bottom: 2rem;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 1rem;
+  }
+  
+  .sidebar ul li a {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar ul li a:hover,
+  .sidebar ul li.active a {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .sidebar ul li a img {
+    width: 20px;
+    margin-right: 0.5rem;
+  }
+  
+  .logout-btn {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    right: 2rem;
+    padding: 0.75rem;
+    background-color: #FF3B30;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #d63030;
+  }
+  
+  /* Estilos para el contenido principal */
+  .main-content {
+    margin-left: 250px;
+    padding: 2rem;
+  }
+  
+  .main-content h1 {
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+  
+  /* Estilos para las tarjetas */
+  .cards-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background-color: var(--card-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    flex: 1;
+    margin-right: 1rem;
+  }
+  
+  .card:last-child {
+    margin-right: 0;
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+  
+  .card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  /* Estilos para los formularios */
+  form {
+    background-color: var(--card-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+  }
+  
+  form input,
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E5E5EA;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+  }
+  
+  form button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilos para las tablas */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+  }
+  
+  table th,
+  table td {
+    background-color: var(--card-color);
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  table th {
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  table tr:first-child th:first-child {
+    border-top-left-radius: var(--border-radius);
+  }
+  
+  table tr:first-child th:last-child {
+    border-top-right-radius: var(--border-radius);
+  }
+  
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: var(--border-radius);
+  }
+  
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: var(--border-radius);
+  }
+  
+  /* Estilos para los botones de acción en las tablas */
+  .action-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-right: 0.5rem;
+  }
+  
+  .delete-btn {
+    background-color: #FF3B30;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #4a9ed8;
+  }
+  
+  .delete-btn:hover {
+    background-color: #d63030;
+  }
+  
+  /* Estilos para el gráfico */
+  .chart-container {
+    background-color: var(--card-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+  }
+  
+  /* Estilos para la lista de ausencias */
+  .top-absences {
+    background-color: var(--card-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .top-absences h2 {
+    margin-bottom: 1rem;
+  }
+  
+  #absence-filter {
+    margin-bottom: 1rem;
+  }
+  
+  #top-absences-list {
+    list-style-type: none;
+  }
+  
+  #top-absences-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #E5E5EA;
+  }
+  
+  #top-absences-list li:last-child {
+    border-bottom: none;
+  }

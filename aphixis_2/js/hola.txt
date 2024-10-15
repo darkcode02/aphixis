@@ -1,0 +1,583 @@
+"eres capaz de crear tu mismo una pagina web por completo y desde cero llamada aphixis? esta pagina es un sistema de registro de asistencia a la cual solo tendran acceso el personal administrativo de la universidad, esta pagina debe contar con un login, va a tener una sección de notas donde se van a poder crear recordatorios, dejar notas, y poner mensajes de motivación, va a tener otra sesion donde se va a poder observar todos los estudiantes registrados y en esta pagina se va a poder registrar nuevos estudiantes, eliminar estudiantes y editar información de los estudiantes, ademas si se le da click a un estudiante se va a poder ver el historial de asistencias e inacistencias filtrado por mes, semana y año. tambien tendra otra sesión llamada asistencias donde se podran ver los estudiantes presentes por medio de un Historial de Asistencia
+pudiendose observar el ID Estudiante, Nombre, Fecha, Hora en que ingreso el Estado (Presente o ausente) y las Acciones (Eliminar o modificar ) , esta pagina web tambien tendra en su dashboard los estudiantes con mas ausencias pudiendose filtrar por mes y semana, tambien se mostraran graficas analiticas y a su vez en el dashboard se podran observar en cards flotantes: el total de estudiantes, las ausencias al dia de hoy y la hora pico. por favor ten en cuenta que no se programar entonces lo tienes que hacer muy detallado y paso a paso, quiero el diseño sea elegante y armonioso y que tenga el estilo que se maneja en ios y mac Entiendo tu solicitud. Voy a crear una página web completa para Aphixis, un sistema de registro de asistencia para personal administrativo universitario, con las características que has mencionado. Te guiaré paso a paso en el proceso de creación, teniendo en cuenta que no tienes experiencia en programación. El diseño será elegante y armonioso, inspirado en el estilo de iOS y macOS.
+Vamos a dividir este proyecto en varias partes:
+
+Estructura de archivos
+HTML para cada página
+CSS para el estilo
+JavaScript para la funcionalidad
+Imágenes y recursos
+
+Empecemos:
+
+Estructura de archivos:
+
+Crea la siguiente estructura de carpetas y archivos: aphixis/
+│
+├── index.html
+├── login.html
+├── dashboard.html
+├── notas.html
+├── estudiantes.html
+├── asistencias.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   ├── main.js
+│   ├── login.js
+│   ├── dashboard.js
+│   ├── notas.js
+│   ├── estudiantes.js
+│   └── asistencias.js
+│
+└── img/
+    ├── logo.svg
+    └── icons/
+        ├── home.svg
+        ├── notes.svg
+        ├── students.svg
+        └── attendance.svg  HTML para cada página:
+
+Empezaremos con el archivo login.html. Abre un editor de texto (como Notepad++ o Visual Studio Code) y crea un nuevo archivo llamado login.html en la carpeta raíz de tu proyecto. Copia y pega el siguiente código: <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <img src="img/logo.svg" alt="Aphixis Logo" class="logo">
+        <h1>Aphixis</h1>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p class="error-message" id="error-message"></p>
+    </div>
+    <script src="js/login.js"></script>
+</body>
+</html>  Ahora, crea el archivo dashboard.html en la carpeta raíz y copia el siguiente código: <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-page">
+    <nav class="sidebar">
+        <img src="img/logo.svg" alt="Aphixis Logo" class="logo">
+        <ul>
+            <li class="active"><a href="dashboard.html"><img src="img/icons/home.svg" alt="Home">Dashboard</a></li>
+            <li><a href="notas.html"><img src="img/icons/notes.svg" alt="Notas">Notas</a></li>
+            <li><a href="estudiantes.html"><img src="img/icons/students.svg" alt="Estudiantes">Estudiantes</a></li>
+            <li><a href="asistencias.html"><img src="img/icons/attendance.svg" alt="Asistencias">Asistencias</a></li>
+        </ul>
+        <button id="logout-btn" class="logout-btn">Cerrar Sesión</button>
+    </nav>
+    <main class="main-content">
+        <h1>Dashboard</h1>
+        <div class="cards-container">
+            <div class="card">
+                <h2>Total Estudiantes</h2>
+                <p id="total-students">0</p>
+            </div>
+            <div class="card">
+                <h2>Ausencias Hoy</h2>
+                <p id="absences-today">0</p>
+            </div>
+            <div class="card">
+                <h2>Hora Pico</h2>
+                <p id="peak-hour">--:--</p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <h2>Asistencia Mensual</h2>
+            <canvas id="attendance-chart"></canvas>
+        </div>
+        <div class="top-absences">
+            <h2>Estudiantes con Más Ausencias</h2>
+            <select id="absence-filter">
+                <option value="week">Esta Semana</option>
+                <option value="month">Este Mes</option>
+            </select>
+            <ul id="top-absences-list"></ul>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html> Ahora crearemos los archivos HTML para las otras páginas. Primero, notas.html:<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Notas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="notes-page">
+    <nav class="sidebar">
+        <!-- Mismo contenido que en dashboard.html -->
+    </nav>
+    <main class="main-content">
+        <h1>Notas</h1>
+        <div class="notes-container">
+            <div class="note-form">
+                <h2>Nueva Nota</h2>
+                <form id="note-form">
+                    <input type="text" id="note-title" placeholder="Título" required>
+                    <textarea id="note-content" placeholder="Contenido" required></textarea>
+                    <select id="note-type">
+                        <option value="recordatorio">Recordatorio</option>
+                        <option value="nota">Nota</option>
+                        <option value="motivacion">Mensaje de Motivación</option>
+                    </select>
+                    <button type="submit">Guardar Nota</button>
+                </form>
+            </div>
+            <div class="notes-list">
+                <h2>Notas Guardadas</h2>
+                <div id="notes-container"></div>
+            </div>
+        </div>
+    </main>
+    <script src="js/notas.js"></script>
+</body>
+</html> Ahora, estudiantes.html: <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Estudiantes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="students-page">
+    <nav class="sidebar">
+        <!-- Mismo contenido que en dashboard.html -->
+    </nav>
+    <main class="main-content">
+        <h1>Estudiantes</h1>
+        <div class="student-form">
+            <h2>Registrar Nuevo Estudiante</h2>
+            <form id="student-form">
+                <input type="text" id="student-name" placeholder="Nombre Completo" required>
+                <input type="email" id="student-email" placeholder="Correo Electrónico" required>
+                <input type="tel" id="student-phone" placeholder="Teléfono">
+                <button type="submit">Registrar Estudiante</button>
+            </form>
+        </div>
+        <div class="students-list">
+            <h2>Lista de Estudiantes</h2>
+            <input type="text" id="student-search" placeholder="Buscar estudiante...">
+            <table id="students-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="students-list"></tbody>
+            </table>
+        </div>
+    </main>
+    <script src="js/estudiantes.js"></script>
+</body>
+</html> , Finalmente, asistencias.html:  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Asistencias</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="attendance-page">
+    <nav class="sidebar">
+        <!-- Mismo contenido que en dashboard.html -->
+    </nav>
+    <main class="main-content">
+        <h1>Asistencias</h1>
+        <div class="attendance-form">
+            <h2>Registrar Asistencia</h2>
+            <form id="attendance-form">
+                <input type="text" id="student-id" placeholder="ID del Estudiante" required>
+                <select id="attendance-status">
+                    <option value="presente">Presente</option>
+                    <option value="ausente">Ausente</option>
+                </select>
+                <button type="submit">Registrar Asistencia</button>
+            </form>
+        </div>
+        <div class="attendance-list">
+            <h2>Historial de Asistencia</h2>
+            <input type="date" id="attendance-date" value="2024-01-01">
+            <table id="attendance-table">
+                <thead>
+                    <tr>
+                        <th>ID Estudiante</th>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-list"></tbody>
+            </table>
+        </div>
+    </main>
+    <script src="js/asistencias.js"></script>
+</body>
+</html>, Perfecto, continuemos con el CSS para darle el estilo elegante y armonioso inspirado en iOS y macOS. Crea un archivo llamado style.css en la carpeta css y copia el siguiente código:
+/* Estilos generales */
+:root {
+  --primary-color: #007AFF;
+  --secondary-color: #5AC8FA;
+  --background-color: #F2F2F7;
+  --text-color: #1C1C1E;
+  --sidebar-color: #FFFFFF;
+  --card-color: #FFFFFF;
+  --border-radius: 10px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Estilos para la página de login */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: var(--card-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-container .logo {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.login-container h1 {
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.login-container input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #E5E5EA;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la barra lateral */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: var(--sidebar-color);
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.sidebar .logo {
+  width: 80px;
+  margin-bottom: 2rem;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 1rem;
+}
+
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li.active a {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.sidebar ul li a img {
+  width: 20px;
+  margin-right: 0.5rem;
+}
+
+.logout-btn {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  padding: 0.75rem;
+  background-color: #FF3B30;
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #d63030;
+}
+
+/* Estilos para el contenido principal */
+.main-content {
+  margin-left: 250px;
+  padding: 2rem;
+}
+
+.main-content h1 {
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+/* Estilos para las tarjetas */
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: var(--card-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  flex: 1;
+  margin-right: 1rem;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.card p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Estilos para los formularios */
+form {
+  background-color: var(--card-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #E5E5EA;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+}
+
+form button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para las tablas */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+table th,
+table td {
+  background-color: var(--card-color);
+  padding: 1rem;
+  text-align: left;
+}
+
+table th {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+table tr:first-child th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+table tr:first-child th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: var(--border-radius);
+}
+
+/* Estilos para los botones de acción en las tablas */
+.action-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: var(--secondary-color);
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.delete-btn {
+  background-color: #FF3B30;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #4a9ed8;
+}
+
+.delete-btn:hover {
+  background-color: #d63030;
+}
+
+/* Estilos para el gráfico */
+.chart-container {
+  background-color: var(--card-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+
+/* Estilos para la lista de ausencias */
+.top-absences {
+  background-color: var(--card-color);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.top-absences h2 {
+  margin-bottom: 1rem;
+}
+
+#absence-filter {
+  margin-bottom: 1rem;
+}
+
+#top-absences-list {
+  list-style-type: none;
+}
+
+#top-absences-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #E5E5EA;
+}
+
+#top-absences-list li:last-child {
+  border-bottom: none;
+}
+Este CSS proporciona un estilo elegante y armonioso inspirado en iOS y macOS. Incluye estilos para todas las páginas que hemos creado, incluyendo la página de login, el dashboard, y las páginas de notas, estudiantes y asistencias.
+Ahora, vamos a crear los archivos JavaScript básicos para cada página. Estos archivos proporcionarán la funcionalidad inicial para nuestra aplicación.
+Primero, crea un archivo login.js en la carpeta js:document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('login-form');
+  const errorMessage = document.getElementById('error-message');
+
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Aquí deberías hacer una llamada a tu API para autenticar al usuario
+    // Por ahora, usaremos una autenticación simulada
+    if (username === 'admin' && password === 'password') {
+      // Autenticación exitosa
+      localStorage.setItem('authenticated', 'true');
+      window.location.href = 'dashboard.html';
+    } else {
+      // Autenticación fallida
+      errorMessage.textContent = 'Usuario o contraseña incorrectos';
+    }
+  });
+}); Estos son los archivos JavaScript básicos para la página de login y el dashboard. En la próxima parte, continuaremos con los archivos JavaScript para las páginas de notas, estudiantes y asistencias."

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aphixis - Asistencias</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="attendance-page">
+    <nav class="sidebar">
+        <!-- Mismo contenido que en dashboard.html -->
+    </nav>
+    <main class="main-content">
+        <h1>Asistencias</h1>
+        <div class="attendance-form">
+            <h2>Registrar Asistencia</h2>
+            <form id="attendance-form">
+                <input type="text" id="student-id" placeholder="ID del Estudiante" required>
+                <select id="attendance-status">
+                    <option value="presente">Presente</option>
+                    <option value="ausente">Ausente</option>
+                </select>
+                <button type="submit">Registrar Asistencia</button>
+            </form>
+        </div>
+        <div class="attendance-list">
+            <h2>Historial de Asistencia</h2>
+            <input type="date" id="attendance-date" value="2024-01-01">
+            <table id="attendance-table">
+                <thead>
+                    <tr>
+                        <th>ID Estudiante</th>
+                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-list"></tbody>
+            </table>
+        </div>
+    </main>
+    <script src="js/asistencias.js"></script>
+</body>
+</html>
