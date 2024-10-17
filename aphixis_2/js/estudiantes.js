@@ -1,6 +1,5 @@
 document.getElementById('student-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
     const name = document.getElementById('student-name').value;
     const email = document.getElementById('student-email').value;
     const phone = document.getElementById('student-phone').value;
@@ -46,5 +45,9 @@ function deleteStudent(id) {
     localStorage.setItem('students', JSON.stringify(students));
     displayStudents();
 }
-
+const logoutBtn = document.getElementById('logout-btn');
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('authenticated');
+    window.location.href = 'login.html';
+});
 displayStudents(); // Mostrar la lista de estudiantes al cargar la página

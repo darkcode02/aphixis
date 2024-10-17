@@ -41,5 +41,9 @@ function displayAttendance() {
         attendanceList.insertAdjacentHTML('beforeend', row);
     });
 }
-
+const logoutBtn = document.getElementById('logout-btn');
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('authenticated');
+    window.location.href = 'login.html';
+});
 displayAttendance(); // Mostrar el historial de asistencias al cargar la página

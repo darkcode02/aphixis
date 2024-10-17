@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       // Aquí deberías hacer una llamada a tu API para autenticar al usuario
       // Por ahora, usaremos una autenticación simulada
-      if (username === 'admin' && password === 'password') {
+      if (username === 'admin' && password === 'admin') {
         // Autenticación exitosa
         localStorage.setItem('authenticated', 'true');
         window.location.href = 'dashboard.html';

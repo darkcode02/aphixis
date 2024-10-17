@@ -34,5 +34,10 @@ function displayNotes() {
         notesContainer.appendChild(noteElement);
     });
 }
+const logoutBtn = document.getElementById('logout-btn');
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('authenticated');
+    window.location.href = 'login.html';
+});
 
 displayNotes(); // Mostrar las notas al cargar la página
